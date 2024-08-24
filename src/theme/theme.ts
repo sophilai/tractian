@@ -30,6 +30,19 @@ const theme = createTheme({
 	},
 	typography: {
 		fontFamily: "Roboto, sans-serif",
+		h1: {
+			fontFamily: "Inter, sans-serif",
+			fontWeight: 600,
+			fontSize: "20px",
+			lineHeight: "28px",
+			letterSpacing: "-0.5px",
+		},
+		subtitle1: {
+			fontFamily: "Inter, sans-serif",
+			fontWeight: 400,
+			fontSize: "14px",
+			lineHeight: "20px",
+		},
 	},
 	components: {
 		MuiButton: {
@@ -59,13 +72,23 @@ const theme = createTheme({
 					},
 				},
 				{
-					props: { variant: "bodyActive" },
+					props: { variant: "pageHead" },
 					style: {
-						color: "#FFFFFF",
-						backgroundColor: "#28A745",
-						border: "none",
-						"&:hover": {
-							backgroundColor: "#218838",
+						color: "#77818C",
+						backgroundColor: "#FFFFFF",
+						border: "1px solid #D8DFE6",
+						borderRadius: "3px",
+						padding: "6px 14px",
+						"& .MuiButton-icon": {
+							marginRight: "6px",
+						},
+						"&.selected": {
+							backgroundColor: "#2188FF",
+							color: "#ffffff",
+							border: "1px solid #2188FF",
+							"& svg path": {
+								fill: "#ffffff",
+							},
 						},
 					},
 				},

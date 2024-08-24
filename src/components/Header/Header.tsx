@@ -1,4 +1,4 @@
-import { memo, useCallback } from "react";
+import { memo } from "react";
 import {
 	AppBar,
 	Toolbar,
@@ -19,12 +19,6 @@ const Header = memo(() => {
 		console.log('Selecting company:', company);
         setSelectedCompany(company);
     };
-
-	const getBackgroundColor = (companyName: string) =>
-		selectedCompany && selectedCompany.name === companyName
-		  ? "#2188FF"
-		  : "#023B78";
-	;
 
 	return (
 		<AppBar
@@ -47,9 +41,9 @@ const Header = memo(() => {
 							variant="header"
 							startIcon={<img src="/assets/gold.svg" alt="icon" />}
 							to={`/company/${company.name}`}
-							sx={{ backgroundColor: getBackgroundColor(company.name) }}
 							onClick={() => handleCompanyClick(company)}
 							component={Link}
+							className={selectedCompany?.name === company.name ? "active" : ""}
 						>
 							{company.name} Unit
 						</Button>
