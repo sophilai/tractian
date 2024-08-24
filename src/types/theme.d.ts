@@ -4,8 +4,7 @@ import { ButtonPropsVariantOverrides as MUIButtonPropsVariantOverrides } from '@
 
 declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
-    headerActive: true;
-    headerInactive: true;
+    header: true;
     bodyActive: true;
     bodyInactive: true;
   }
