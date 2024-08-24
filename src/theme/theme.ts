@@ -49,7 +49,7 @@ const theme = createTheme({
 						padding: "5px 8px",
 						fontSize: "12px",
 						lineHeight: "16px",
-            fontFamily: '"Inter", sans-serif',
+						fontFamily: '"Inter", sans-serif',
 						"&:hover": {
 							backgroundColor: "#0056b3",
 						},

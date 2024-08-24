@@ -4,13 +4,10 @@ import React, {
 	useEffect,
 	useState,
 	ReactNode,
+	useMemo
 } from "react";
-import axios from "axios";
-
-interface Company {
-	id: string;
-	name: string;
-}
+import { fetchCompanies } from "../features/api/fetchCompanies";
+import { Company } from "../types/company";
 
 interface CompaniesContextType {
 	companies: Company[];
@@ -36,12 +33,10 @@ export const CompaniesProvider: React.FC<CompaniesProviderProps> = ({
 	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
-		const fetchCompanies = async () => {
+		const fetchData = async () => {
 			try {
-				const response = await axios.get(
-					"https://fake-api.tractian.com/companies"
-				);
-				setCompanies(response.data);
+				const data = await fetchCompanies(); 
+				setCompanies(data);
 			} catch (err) {
 				setError("Failed to fetch companies");
 			} finally {
@@ -49,11 +44,17 @@ export const CompaniesProvider: React.FC<CompaniesProviderProps> = ({
 			}
 		};
 
-		fetchCompanies();
+		fetchData();
 	}, []);
 
+	const value = useMemo(() => ({
+        companies,
+        isLoading,
+        error,
+    }), [companies, isLoading, error]);
+
 	return (
-		<CompaniesContext.Provider value={{ companies, isLoading, error }}>
+		<CompaniesContext.Provider value={value}>
 			{children}
 		</CompaniesContext.Provider>
 	);
