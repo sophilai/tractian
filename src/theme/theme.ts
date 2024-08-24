@@ -1,4 +1,14 @@
+import '@mui/material/styles';
 import { createTheme } from '@mui/material/styles';
+
+declare module '@mui/material/styles' {
+  interface ButtonPropsVariantOverrides {
+    headerActive: true;
+    headerInactive: true;
+    bodyActive: true;
+    bodyInactive: true;
+  }
+}
 
 const theme = createTheme({
     palette: {
@@ -36,44 +46,44 @@ const theme = createTheme({
             {
               props: { variant: 'headerActive' },
               style: {
-                color: '#FFFFFF', // Cor do texto
-                backgroundColor: '#007BFF', // Cor de fundo
+                color: '#FFFFFF', 
+                backgroundColor: '#007BFF',
                 border: 'none',
                 '&:hover': {
-                  backgroundColor: '#0056b3', // Cor de fundo ao passar o mouse
+                  backgroundColor: '#0056b3',
                 },
               },
             },
             {
               props: { variant: 'headerInactive' },
               style: {
-                color: '#6C757D', // Cor do texto
-                backgroundColor: '#F8F9FA', // Cor de fundo
-                border: '1px solid #6C757D', // Borda
+                color: '#6C757D', 
+                backgroundColor: '#F8F9FA',
+                border: '1px solid #6C757D', 
                 '&:hover': {
-                  backgroundColor: '#E2E6EA', // Cor de fundo ao passar o mouse
+                  backgroundColor: '#E2E6EA', 
                 },
               },
             },
             {
               props: { variant: 'bodyActive' },
               style: {
-                color: '#FFFFFF', // Cor do texto
-                backgroundColor: '#28A745', // Cor de fundo
+                color: '#FFFFFF',
+                backgroundColor: '#28A745',
                 border: 'none',
                 '&:hover': {
-                  backgroundColor: '#218838', // Cor de fundo ao passar o mouse
+                  backgroundColor: '#218838',
                 },
               },
             },
             {
               props: { variant: 'bodyInactive' },
               style: {
-                color: '#6C757D', // Cor do texto
-                backgroundColor: '#E9ECEF', // Cor de fundo
-                border: '1px solid #6C757D', // Borda
+                color: '#6C757D', 
+                backgroundColor: '#E9ECEF', 
+                border: '1px solid #6C757D', 
                 '&:hover': {
-                  backgroundColor: '#DEE2E6', // Cor de fundo ao passar o mouse
+                  backgroundColor: '#DEE2E6', 
                 },
               },
             },
