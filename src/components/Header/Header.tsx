@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useCallback } from "react";
 import {
 	AppBar,
 	Toolbar,
@@ -8,15 +8,23 @@ import {
 	Box,
 } from "@mui/material";
 import { useCompanies } from "../../contexts/CompaniesContext";
-import { useLocation } from "react-router-dom";
+import { Company } from "../../types/company";
+import { Link } from 'react-router-dom';
 
 const Header = memo(() => {
 	const theme = useTheme();
-	const { companies } = useCompanies();
-	const location = useLocation();
+	const { companies, setSelectedCompany, selectedCompany } = useCompanies();
 
-	const getBackgroundColor = (companyName: string) => 
-		location.pathname === `/company/${companyName}` ? "#2188FF" : "#023B78";
+	const handleCompanyClick = (company: Company) => {
+		console.log('Selecting company:', company);
+        setSelectedCompany(company);
+    };
+
+	const getBackgroundColor = (companyName: string) =>
+		selectedCompany && selectedCompany.name === companyName
+		  ? "#2188FF"
+		  : "#023B78";
+	;
 
 	return (
 		<AppBar
@@ -38,8 +46,10 @@ const Header = memo(() => {
 							key={company.id}
 							variant="header"
 							startIcon={<img src="/assets/gold.svg" alt="icon" />}
-							href={`/company/${company.name}`}
+							to={`/company/${company.name}`}
 							sx={{ backgroundColor: getBackgroundColor(company.name) }}
+							onClick={() => handleCompanyClick(company)}
+							component={Link}
 						>
 							{company.name} Unit
 						</Button>
